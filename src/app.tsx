@@ -1,12 +1,11 @@
-import { MetaProvider, Title } from "@solidjs/meta";
 import { Route, Router } from "@solidjs/router";
-import { FileRoutes } from "@solidjs/start/router";
-import { For, Suspense } from "solid-js";
+import { Suspense, lazy } from "solid-js";
 import "./app.css";
+import { getPost, getPosts } from "./lib/posts";
 
-import Posts from "./pages/posts";
-import PostView from "./pages/posts/[id]";
-import PostNew from "./pages/new";
+const Posts = lazy(() => import("./pages/posts"));
+const PostView = lazy(() => import("./pages/posts/[id]"));
+const PostNew = lazy(() => import("./pages/new"));
 
 export default function App() {
   return (
@@ -20,8 +19,12 @@ export default function App() {
         </main>
       )}
     >
-      <Route path="/" component={Posts} />
-      <Route path="/posts/:id" component={PostView} />
+      <Route path="/" component={Posts} load={() => getPosts()} />
+      <Route
+        path="/posts/:id"
+        component={PostView}
+        load={({ params }) => getPost(+params.id)}
+      />
       <Route path="/new" component={PostNew} />
     </Router>
   );
