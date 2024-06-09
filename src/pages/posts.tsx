@@ -18,6 +18,7 @@ export default function Posts() {
           )}
         </For>
       </ul>
+      <a href={`/new`}>New blog post</a>
     </>
   );
 }

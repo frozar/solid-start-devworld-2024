@@ -22,7 +22,11 @@ export async function addPost(postInput: PostInput) {
   await Promise.all([
     storage.setItem("posts:data", [
       ...(posts as Post[]),
-      (post = { ...postInput, id: index as number, timestamp: Date.now() }),
+      (post = {
+        ...postInput,
+        id: (index as number) + 1,
+        timestamp: Date.now(),
+      }),
     ]),
     storage.setItem("posts:counter", (index as number) + 1),
   ]);
