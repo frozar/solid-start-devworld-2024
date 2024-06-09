@@ -16,7 +16,7 @@ export default function App() {
           <a href="/">
             <h1>Solidarity</h1>
           </a>
-          {props.children}
+          <Suspense fallback="Loading...">{props.children}</Suspense>
         </main>
       )}
     >
