@@ -1,22 +1,28 @@
 import { MetaProvider, Title } from "@solidjs/meta";
-import { Router } from "@solidjs/router";
+import { Route, Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
-import { Suspense } from "solid-js";
+import { For, Suspense } from "solid-js";
 import "./app.css";
+
+import Posts from "./pages/posts";
+import PostView from "./pages/posts/[id]";
+import PostNew from "./pages/new";
 
 export default function App() {
   return (
     <Router
-      root={props => (
-        <MetaProvider>
-          <Title>SolidStart - Basic</Title>
-          <a href="/">Index</a>
-          <a href="/about">About</a>
-          <Suspense>{props.children}</Suspense>
-        </MetaProvider>
+      root={(props) => (
+        <main>
+          <a href="/">
+            <h1>Solidarity</h1>
+          </a>
+          {props.children}
+        </main>
       )}
     >
-      <FileRoutes />
+      <Route path="/" component={Posts} />
+      <Route path="/posts/:id" component={PostView} />
+      <Route path="/new" component={PostNew} />
     </Router>
   );
 }
