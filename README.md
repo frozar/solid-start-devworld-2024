@@ -1,3 +1,8 @@
+This project reproduces the differents steps of Ryan Carniato's talk at DevWorld 2024:
+https://www.youtube.com/watch?v=ZVjXtfdKQ3g&ab_channel=JSWORLDConference
+
+This is also a personnal check of my understanding of the meta framework SolidStart.
+
 # SolidStart
 
 Everything you need to build a Solid project, powered by [`solid-start`](https://start.solidjs.com);
