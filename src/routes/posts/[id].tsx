@@ -1,6 +1,16 @@
-import { RouteSectionProps, createAsync } from "@solidjs/router";
+import {
+  RouteDefinition,
+  RouteSectionProps,
+  createAsync,
+} from "@solidjs/router";
 import { Show } from "solid-js";
 import { getPost } from "~/lib/posts";
+
+export const route = {
+  load(props) {
+    getPost(+props.params.id);
+  },
+} satisfies RouteDefinition;
 
 export default function PostView(props: RouteSectionProps) {
   const post = createAsync(async () => getPost(+props.params.id));
