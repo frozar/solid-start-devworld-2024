@@ -8,8 +8,9 @@ export default function PostView(props: RouteSectionProps) {
     <Show when={post()}>
       <article>
         <h3>{post()!.title}</h3>
-        <small>{post()!.timestamp.toLocaleDateString()}</small>
-        <small>{post()!.timestamp.toLocaleDateString()}</small>
+        {/* WARNING: the TypeScript type resolution is good, but the usage is not */}
+        {/* <small>{post()?.timestamp.toLocaleDateString()}</small> */}
+        <small>{new Date(post()!.timestamp).toLocaleDateString()}</small>
         <div>{post()!.content}</div>
       </article>
     </Show>
